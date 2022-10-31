@@ -2,5 +2,7 @@
 
 ## Test running
 
-To auto watch assignment tests run command:
-`ls *.rb | entr -r ruby <path/to/test>.rb`
+To auto-watch assignment tests:
+
+- `cd` into the assigment folder
+- run command: `ls *.rb | entr -r ruby <path/to/test>.rb`
