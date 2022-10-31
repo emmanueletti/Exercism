@@ -7,17 +7,14 @@ class SimpleCalculatorTest < Minitest::Test
   end
 
   def test_multiplication
-    skip
     assert_equal "3 * 21 = 63", SimpleCalculator.calculate(3, 21, "*")
   end
 
   def test_division
-    skip
     assert_equal "72 / 9 = 8", SimpleCalculator.calculate(72, 9, "/")
   end
 
   def test_rescues_division_by_0_exception
-    skip
     assert_equal "Division by zero is not allowed.", SimpleCalculator.calculate(33, 0, "/")
   end
 
