@@ -1,4 +1,5 @@
 class SimpleCalculator
+  private_class_method :validate_args
   ALLOWED_OPERATIONS = ["+", "/", "*"].freeze
 
   class UnsupportedOperation < StandardError
