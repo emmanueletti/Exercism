@@ -4,36 +4,6 @@
 # To get started with TDD, see the `README.md` file in your
 # `ruby/clock` directory.
 
-# class Clock
-#   def initialize(hour: 0, minute: nil)
-#     while !minute.nil? && minute >= 60
-#       minute -= 60
-#       hour += 1
-#     end
-
-#     if !hour.nil? && hour > 24
-#       hour = hour % 24
-#     end
-
-#     # p "HOUR IS: #{hour}"
-#     @time = Time.new(2022, 1, 1, hour, minute)
-#   end
-
-#   def to_s
-#     time.strftime("%H:%M")
-#   end
-
-#   private
-
-#   def roll_over_hour
-#   end
-
-#   def roll_over_minute
-#   end
-
-#   attr_reader(:time)
-# end
-
 class Clock
   attr_reader :hour, :minute
 
@@ -45,8 +15,9 @@ class Clock
   def to_s
     roll_over_minute
     roll_over_hour
-    p "FULL TIME: #{hour}:#{minute}"
+    # p "FULL TIME: #{hour}:#{minute}"
     time = Time.new(Time.now.year, Time.now.month, Time.now.mday, hour, minute)
+    # puts time.strftime("%H:%M")
     time.strftime("%H:%M")
   end
 
