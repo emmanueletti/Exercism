@@ -13,11 +13,9 @@ class Clock
   end
 
   def to_s
-    roll_over_minute
+    calculate_minutes
     roll_over_hour
-    # p "FULL TIME: #{hour}:#{minute}"
     time = Time.new(Time.now.year, Time.now.month, Time.now.mday, hour, minute)
-    # puts time.strftime("%H:%M")
     time.strftime("%H:%M")
   end
 
@@ -40,13 +38,12 @@ class Clock
   def ==(other)
     return if other.class != Clock
     to_s == other.to_s
-    # hour == other.hour && minute == other.minute
   end
 
   private
 
-  def roll_over_minute
-    wind_minutes_backwards
+  def calculate_minutes
+    wind_minutes_backwards if minute.negative?
 
     while minute >= 60
       self.minute -= 60
@@ -55,11 +52,13 @@ class Clock
   end
 
   def roll_over_hour
-    wind_hours_backwards
+    wind_hours_backwards if hour.negative?
 
     while hour > 24
       self.hour = hour % 24
     end
+
+    self.hour = 0 if hour == 24
   end
 
   def wind_minutes_backwards
