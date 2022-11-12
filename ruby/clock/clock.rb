@@ -20,24 +20,18 @@ class Clock
   end
 
   def +(other)
-    return if other.class != Clock
-
-    @hour += other.hour
-    @minute += other.minute
-    self
+    return if other.instance_of?(Class)
+    Clock.new(hour: hour + other.hour, minute: minute + other.minute)
   end
 
   def -(other)
-    return if other.class != Clock
-
-    @hour -= other.hour
-    @minute -= other.minute
-    self
+    return if other.instance_of?(Class)
+    Clock.new(hour: hour - other.hour, minute: minute - other.minute)
   end
 
   def ==(other)
-    return if other.class != Clock
-    to_s == other.to_s
+    self.class == other.class &&
+      to_s == other.to_s
   end
 
   private
