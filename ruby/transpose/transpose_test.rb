@@ -1,9 +1,9 @@
-require 'minitest/autorun'
-require_relative 'transpose'
+require "minitest/autorun"
+require_relative "transpose"
 
 class TransposeTest < Minitest::Test
   def test_empty_string
-    # skip
+    skip
     input = ""
     expected = ""
     assert_equal expected, Transpose.transpose(input)
@@ -52,7 +52,7 @@ class TransposeTest < Minitest::Test
   end
 
   def test_mixed_line_length
-    skip
+    # skip
     input = "The longest line.\nA long line.\nA longer line.\nA line."
     expected = "TAAA\nh   \nelll\n ooi\nlnnn\nogge\nn e.\nglr\nei \nsnl\ntei\n .n\nl e\ni .\nn\ne\n."
     assert_equal expected, Transpose.transpose(input)

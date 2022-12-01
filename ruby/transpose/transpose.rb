@@ -12,14 +12,9 @@
 
 # caveat
 # if the rows have diff lengths, then add the padding on the left
+# it would make the problem a lot simpler if each row was already made the same length
 
 class Transpose
   def self.transpose(input)
-    # take the input string and represent it as a matrix
-    # take each line and as a row of strings
-    # turn each line into individual chars
-
-    # transpose
-    # take the matrix and
   end
 end
