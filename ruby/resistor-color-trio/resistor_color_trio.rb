@@ -5,29 +5,42 @@
 # `ruby/resistor-color-trio` directory.
 
 class ResistorColorTrio
+  COLORS = %w[black brown red orange yellow green blue violet grey white]
+  private_constant :COLORS
+
   def initialize(data)
+    validate_input(data)
     @colors = data[0, 2]
-    @multiplier = data.last.to_i
+    @multiplier = COLORS.index(data.last)
   end
 
   def label
-    value = colors.inject("") do |acc, el|
-      p colors
-      p COLORS.index(el), "index"
-      p COLORS
-      acc + COLORS.index(el).to_s
-    end
+    value_with_multiplier = colours_mapped_to_value
 
-    multiplied_value = value * 10**multiplier
-    "Resistor value: #{value * 10**multiplier}"
+    if value_with_multiplier >= 1000
+      divided_value = value_with_multiplier / 1000
+      template_string % "#{divided_value} kiloohms"
+    else
+      template_string % "#{value_with_multiplier} ohms"
+    end
   end
 
   private
 
-  COLORS = %w[black brown red orange yellow green blue violet grey white]
+  def colours_mapped_to_value
+    value = colors.map { |c| COLORS.index(c) }.join
+    value.to_i * (10**multiplier)
+  end
+
+  def template_string
+    "Resistor value: %s"
+  end
+
+  def validate_input(data)
+    data.each do |d|
+      raise ArgumentError if !COLORS.include?(d)
+    end
+  end
 
   attr_reader :colors, :multiplier
-
-  def human_readable_string
-  end
 end
