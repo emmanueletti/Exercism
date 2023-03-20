@@ -9,9 +9,8 @@ class ResistorColorTrio
   private_constant :COLORS
 
   def initialize(data)
-    validate_input(data)
     @colors = data[0, 2]
-    @multiplier = COLORS.index(data.last)
+    @multiplier = COLORS.index(data.last) || (raise ArgumentError)
   end
 
   def label
@@ -28,18 +27,12 @@ class ResistorColorTrio
   private
 
   def colours_mapped_to_value
-    value = colors.map { |c| COLORS.index(c) }.join
+    value = colors.map { |c| COLORS.index(c) || (raise ArgumentError) }.join
     value.to_i * (10**multiplier)
   end
 
   def template_string
     "Resistor value: %s"
-  end
-
-  def validate_input(data)
-    data.each do |d|
-      raise ArgumentError if !COLORS.include?(d)
-    end
   end
 
   attr_reader :colors, :multiplier
